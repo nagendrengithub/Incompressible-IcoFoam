@@ -3,37 +3,41 @@
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
 |  \\    /   O peration     | Version:  v2012                                 |
 |   \\  /    A nd           | Website:  www.openfoam.com                      |
-|    \\/     M anipulation  |       cd                                          |
+|    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
     version     2.0;
     format      ascii;
-    class       volScalarField;
-    object      p;
+    class       polyBoundaryMesh;
+    location    "constant/polyMesh";
+    object      boundary;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 2 -2 0 0 0 0];
-
-internalField   uniform 0;
-
-boundaryField
-{
+3
+(
     movingWall
     {
-        type            zeroGradient;
+        type            wall;
+        inGroups        1(wall);
+        nFaces          20;
+        startFace       760;
     }
-
     fixedWalls
     {
-        type            zeroGradient;
+        type            wall;
+        inGroups        1(wall);
+        nFaces          60;
+        startFace       780;
     }
-
     frontAndBack
     {
         type            empty;
+        inGroups        1(empty);
+        nFaces          800;
+        startFace       840;
     }
-}
+)
 
 // ************************************************************************* //
